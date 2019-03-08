@@ -4,7 +4,11 @@ This tool splits a Jupyter Notebook into Sub-Notebooks depending on cell metadat
 
 ## Installation
 
-Please, for now, download the script and place it into the folder where you want to split Notebooks in.
+Although the Notebook Splitter is only a single file it can be installed via `pip`
+
+```bash
+pip install notebook-splitter
+```
 
 ## Usage
 
