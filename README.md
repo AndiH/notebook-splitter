@@ -14,7 +14,7 @@ pip install notebook-splitter
 
 ### Overview
 
-**TL;DR: See `./notebook-splitter.py --help`.**
+**TL;DR: See `notebook-splitter --help`.**
 
 1. Add [cell metadata](https://ipython.org/ipython-doc/3/notebook/nbformat.html#cell-metadata) to your Jupyter Notebook: Add an `exercise` key (default, can be changed) to the metadata (JSON); give it values (*tags*) on which to create Sub-Notebooks
 
@@ -31,9 +31,9 @@ pip install notebook-splitter
 2. Use `--keep` and `--remove` flags of the Notebook Splitter to keep and remove cells with according *tags*; export it to the respective Notebook:
 
     ```bash
-    ./notebook-splitter.py input.ipynb --keep task --remove solution   -o tasks.ipynb
-    ./notebook-splitter.py input.ipynb --keep solution --remove task   -o solutions.ipynb
-    ./notebook-splitter.py input.ipynb --remove task --remove solution -o slides.ipynb
+    notebook-splitter input.ipynb --keep task --remove solution   -o tasks.ipynb
+    notebook-splitter input.ipynb --keep solution --remove task   -o solutions.ipynb
+    notebook-splitter input.ipynb --remove task --remove solution -o slides.ipynb
     ```
 
 ### Examples in Action
