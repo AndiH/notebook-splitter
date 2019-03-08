@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-# Andreas Herten, 25 February 2019
+# Andreas Herten, 8 March 2019; MIT License
 import json
 import copy
 import os
