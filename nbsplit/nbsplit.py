@@ -40,8 +40,7 @@ def parse(inputfile, keep, remove, basekey):
 
     return notebook_new
 
-
-if __name__ == '__main__':
+def main():
     parser = argparse.ArgumentParser(description=textwrap.dedent("""
         Split up Jupyter Notebook to Sub-Notebooks by cell metadata.
 
@@ -57,3 +56,6 @@ if __name__ == '__main__':
     notebook = parse(inputfile=args.infile, keep=args.keep, remove=args.remove, basekey=args.basekey)
 
     json.dump(notebook, args.output)
+
+if __name__ == '__main__':
+    main()
