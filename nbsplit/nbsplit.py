@@ -6,6 +6,9 @@ import os
 import sys
 import argparse
 import textwrap
+import logging
+
+logger = logging.getLogger(__file__)
 
 
 def parse(inputfile, keep, remove, basekey):
@@ -37,6 +40,8 @@ def parse(inputfile, keep, remove, basekey):
                             keepcell = False
         if keepcell == True:
             notebook_new["cells"].append(cell)
+        else:
+            logger.info("Removing cell with JSON content:\n{}".format(json.dumps(cell, indent=4)))
 
     return notebook_new
 
@@ -52,7 +57,15 @@ def main():
     parser.add_argument('--keep',   "-k", action="append", help="Keep these tags.")
     parser.add_argument('--remove', "-r", action="append", help="Remove these tags. Special: all (remove all except for those of --keep).")
     parser.add_argument('--basekey', type=str, help="Basekey to use for discriminating the tags.", default="exercise")
+    parser.add_argument("-v", "--verbose", action='count', help="Verbose output; use multiple -v to increase verbosity; messages are printed to stderr", default=0)
     args = parser.parse_args()
+    log_levels = [logging.ERROR, logging.WARNING, logging.INFO, logging.DEBUG]
+    log_level = log_levels[min(len(log_levels) - 1, args.verbose)]
+    logger.setLevel(log_level)
+    sh = logging.StreamHandler()
+    sh.setLevel(log_level)
+    sh.setFormatter(logging.Formatter('%(name)s::%(levelname)s::%(message)s'))
+    logger.addHandler(sh)
     notebook = parse(inputfile=args.infile, keep=args.keep, remove=args.remove, basekey=args.basekey)
 
     json.dump(notebook, args.output, indent=1)
