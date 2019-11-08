@@ -14,8 +14,8 @@ def parse(inputfile, keep, remove, basekey):
     """
     notebook = json.load(inputfile)
 
-    if isinstance(keep, str): keep = [keep]
-    if isinstance(remove, str): remove = [remove]
+    if not isinstance(keep, list): keep = [keep]
+    if not isinstance(remove, list): remove = [remove]
 
     notebook_new = copy.deepcopy(notebook)
     notebook_new["cells"] = []
