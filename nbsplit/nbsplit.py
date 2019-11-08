@@ -52,12 +52,12 @@ def main():
         Specify tags to keep with `--keep`, specify tags to remove with `--remove`; multiple instances are ok. Special `--remove` tag: all (which removes all cells except those specified with `--keep`).
         All tags will be read from BASEKEY, which usually is `exercise`, if you do not specify it differently.
         """), formatter_class=argparse.RawTextHelpFormatter)
-    parser.add_argument('infile', type=argparse.FileType('r'), nargs='?', default=sys.stdin, help="Input file to parse")
-    parser.add_argument('--output', "-o", nargs='?', type=argparse.FileType('w'), default=sys.stdout, help="Output file to parse to")
-    parser.add_argument('--keep',   "-k", action="append", help="Keep these tags.")
-    parser.add_argument('--remove', "-r", action="append", help="Remove these tags. Special: all (remove all except for those of --keep).")
-    parser.add_argument('--basekey', type=str, help="Basekey to use for discriminating the tags.", default="exercise")
-    parser.add_argument("-v", "--verbose", action='count', help="Verbose output; use multiple -v to increase verbosity; messages are printed to stderr", default=0)
+    parser.add_argument('infile', type=argparse.FileType('r'), nargs='?', default=sys.stdin, help="Input file to parse (default: stdin)")
+    parser.add_argument('--output', "-o", nargs='?', type=argparse.FileType('w'), default=sys.stdout, help="Output file to parse to (default: stdout)")
+    parser.add_argument('--keep',   "-k", action="append", help="Keep these tags (default: None)")
+    parser.add_argument('--remove', "-r", action="append", help="Remove these tags. Special: all (remove all except for those of --keep). (default: None)")
+    parser.add_argument('--basekey', type=str, help="Basekey to use for discriminating the tags (default: exercise)", default="exercise")
+    parser.add_argument("-v", "--verbose", action='count', help="Verbose output; use multiple -v to increase verbosity; messages are printed to stderr (default: 0)", default=0)
     args = parser.parse_args()
     log_levels = [logging.ERROR, logging.WARNING, logging.INFO, logging.DEBUG]
     log_level = log_levels[min(len(log_levels) - 1, args.verbose)]
