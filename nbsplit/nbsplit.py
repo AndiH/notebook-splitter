@@ -55,7 +55,7 @@ def main():
     args = parser.parse_args()
     notebook = parse(inputfile=args.infile, keep=args.keep, remove=args.remove, basekey=args.basekey)
 
-    json.dump(notebook, args.output)
+    json.dump(notebook, args.output, indent=1)
 
 if __name__ == '__main__':
     main()
