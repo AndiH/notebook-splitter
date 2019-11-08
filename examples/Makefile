@@ -8,13 +8,13 @@ NB_SOLUTION = Notebook-Solution.ipynb
 all: $(NB_SOLUTION) $(NB_TASK) $(NB_EMPTY)
 
 $(NB_TASK): $(NB_MASTER) Makefile
-	../notebook-splitter.py $< --keep task --remove solution -o $@
+	../nbsplit/nbsplit.py $< --keep task --remove solution -o $@
 	
 $(NB_SOLUTION): $(NB_MASTER) Makefile
-	../notebook-splitter.py $< --keep solution --remove task -o $@
+	../nbsplit/nbsplit.py $< --keep solution --remove task -o $@
 
 $(NB_EMPTY): $(NB_MASTER) Makefile
-	../notebook-splitter.py $< --keep even-empty --remove all -o $@
+	../nbsplit/nbsplit.py $< --keep even-empty --remove all -o $@
 
 clean:
 	rm $(NB_SOLUTION) $(NB_TASK) $(NB_EMPTY)
